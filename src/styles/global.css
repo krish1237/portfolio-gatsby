@@ -1,0 +1,102 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+
+
+@media (max-width: 640px){
+    .navbar-logo{
+        @apply inset-x-0
+    }
+    .center-avatar{
+        @apply mx-auto
+    }
+    .dropdown{
+        @apply flex flex-row items-end;
+        position: relative;
+        display: inline-block;
+    }
+    .dropdown-content{
+        @apply shadow rounded;
+        display: none;
+        position: absolute;
+        bottom:30px;
+        background-color:transparent;
+        z-index: 10;
+    }
+    .dropdown:hover .dropdown-content{
+        display: block;
+    }
+    .dropdown:hover .dropdown-icon{
+        @apply rotate-0;
+    }
+    .social-links{
+        @apply space-y-2 mb-2 shadow-none min-w-0 transition-all duration-500;
+        bottom: 90px;
+        right: 20px;
+        width: 100%;
+        height: 100px;
+    }
+    .contact-btn{
+        position: absolute;
+        right: 30px
+    }
+}
+
+.navbar-logo{
+    @apply fixed top-2;
+}
+
+.social-icon{
+    @apply flex items-center justify-center transition-all duration-300 ease-in-out transform hover:-translate-y-1 hover:scale-110 sm:hover:mx-2
+}
+
+.home-social-icon{
+    @apply transition-all duration-500 ease-in-out transform hover:-translate-x-5 hover:scale-125 sm:hover:my-8
+}
+
+.navbar-link{
+    @apply cursor-pointer transition-all duration-300 ease-in-out transform hover:scale-110 hover:text-blue-500 dark:hover:text-red-400 sm:hover:mx-2
+}
+
+.typewriterAnimation {
+    @apply font-mono;
+    position: relative;
+    width: max-content;
+    --typewriter-speed : 0;
+    --typewriter-length : 0;
+}
+
+.typewriterAnimation::before,
+.typewriterAnimation::after {
+    content: "";
+    position: absolute;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+}
+
+.typewriterAnimation::before{
+    @apply bg-gray-50 dark:bg-gray-900;
+    animation: typewriter var(--typewriter-speed) steps(var(--typewriter-length)) 300ms forwards;
+}
+
+@keyframes typewriter {
+    to {
+        left: 100%;
+    }
+}
+
+.typewriterAnimation::after {
+    @apply bg-gray-900 dark:bg-gray-50 w-0.5;
+    animation: 
+        typewriter var(--typewriter-speed) steps(var(--typewriter-length)) 300ms forwards,
+        cursorBlink 750ms steps(var(--typewriter-length)) infinite;
+}
+
+@keyframes cursorBlink {
+    to {
+        background-color: transparent;
+    }
+}
