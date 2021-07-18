@@ -81,11 +81,11 @@ export default function IndexPage(){
     const sections = document.querySelectorAll('.scroll-snap-child')
     const options = {
       rootMargin: '0px',
-      threshold: 0.02
+      threshold: 0.01
     }
     const callback = (entries) => {
       const entry = entries[0]
-      if(entry.intersectionRatio >= 0.02){
+      if(entry.intersectionRatio >= 0.01){
         window.scrollTo({
           top: entry.target.offsetTop,
           left: 0,
