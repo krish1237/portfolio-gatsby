@@ -1,18 +1,19 @@
 import React, { useEffect, useRef, useState } from "react"
 import Layout from "../components/Layout"
 import HeroHome from "../components/HeroHome"
-import Timeline from "../components/Timeline"
 import { Provider as AlertProvider } from 'react-alert'
 import AlertTemplate from "../components/AlertTemplate"
 
 export default function IndexPage(){
 
-  const scroll = window.requestAnimationFrame || function(callback){window.setTimeout(callback, 1000/60)}
+  const scroll = function(callback){window.setTimeout(callback, 1000/60)}
   let avatarWidth = 400 
   let avatarHeight = 400
   let navbarHeight = 40
   let globalHeroAnimationId = null
   let textLogoWidth = 100
+
+  const [darkMode, setDarkMode] = useState(true)
 
   const setAvatarHeigthWidth = () => {
     if(window.innerWidth > 1024){
@@ -28,7 +29,10 @@ export default function IndexPage(){
     }
   }
 
-  setAvatarHeigthWidth()
+  useEffect(() => {
+    setAvatarHeigthWidth()
+    setDarkMode(window.matchMedia('(prefers-color-scheme: dark)').matches)
+  }, [])
 
   const avatarAnimation = () => {
     let avatarDiv = document.getElementById('hero-avatar-div');
@@ -113,14 +117,12 @@ export default function IndexPage(){
   }
   
   useEffect(() => {
-    console.log("here")
     scroll(avatarAnimation)
     scrollSnap()
-  })
+  }, [])
 
   // Dark Mode for HeroHome
   const layoutRef = useRef(null)
-  const [darkMode, setDarkMode] = useState(window.matchMedia('(prefers-color-scheme: dark)').matches)
   useEffect(()=>{
     if(layoutRef.current){
       layoutRef.current.toggleDarkMode(darkMode)

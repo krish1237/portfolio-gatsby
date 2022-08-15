@@ -18,7 +18,10 @@ function Layout(props, ref) {
     }))
 
     //Dark Mode
-    const [darkMode, setDarkMode] = useState(window.matchMedia('(prefers-color-scheme: dark)').matches)
+    const [darkMode, setDarkMode] = useState(true)
+    useEffect(() => {
+        setDarkMode(window.matchMedia('(prefers-color-scheme: dark)').matches)
+    }, [])
     useEffect(() => {
         if (darkMode) {
             document.documentElement.classList.add('dark')
